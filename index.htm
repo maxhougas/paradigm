@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html><head>
+<title>Paradigm Toys</title>
+<link rel='stylesheet' href='resources/paradigm.css' />
+<script src=resources/funcs.js></script>
+</head><body>
+
+<noscript>
+ <h1>No JavaScript</h1>
+</noscript>
+
+<div id='main'>
+</div>
+
+<script>
+ let paradigm = "<h1>Welcome to Paradigm toys, home of uncommonly professional begleri! </h1>"
+ let marquee = mkmarquee(paradigm)
+ let main = document.getElementById('main')
+ let ban = mkcover()
+ main.appendChild(ban)
+
+ //let dbox = mkdisplaybox()
+ //main.appendChild(dbox)
+
+ let acc = mkaccordion(['MrKitty','<a href=kitty1.html>kitty1</a>','<a href=kitty1.html>kitty2</a>','<a href=kitty1.html>kitty3</a>'])
+ let sn = document.getElementById('sidenav')
+ sn.appendChild(acc)
+
+ let fakemar = document.createElement('div')
+ let fakeslide = document.createElement('div')
+ let fakemar0 = document.createElement('div')
+ let fakehead0 = document.createElement('h1')
+/*
+ let fakemar1 = document.createElement('div')
+ let fakehead1 = document.createElement('h1')
+*/
+
+ fakehead0.innerHTML = 'This is a wildly long sentence about a really cool website called paradigmtoys.com where you can get cool skill toys for the low low price of 1995. '
+ fakehead0.style.textWrap = 'nowrap'
+/*
+ fakehead1.innerHTML = 'This is a wildly long sentence about a really cool website called paradigmtoys.com where you can get cool skill toys for the low low price of 1995. '
+ fakehead1.style.textWrap = 'nowrap'
+*/
+
+ fakemar0.style.flexFlow = 'row nowrap'
+ fakemar0.style.width = 'max-content'
+ fakemar0.style.height = 'min-content'
+ fakemar0.style.justiyfContebnt = 'flex-start'
+ fakemar0.appendChild(fakehead0)
+/*
+ fakemar1.style.flexFlow = 'row nowrap'
+ fakemar1.style.width = 'max-content'
+ fakemar1.style.height = 'min-content'
+ fakemar1.appendChild(fakehead1)
+*/
+
+ fakeslide.style.flexFlow = 'row nowrap'
+ fakeslide.style.minWidth = '200%'
+ fakeslide.style.width = 'max-content'
+ fakeslide.style.height = 'min-content'
+ fakeslide.style.justifyContent = 'flex-start'
+ fakeslide.append(fakemar0,fakemar0.cloneNode(true))
+
+ fakemar.appendChild(fakeslide)
+
+ fakemar.style.display = 'block'
+ fakemar.style.flexFlow = 'row nowrap'
+ fakemar.width = '100%'
+ fakemar.style.justifyContent = 'left'
+ main.appendChild(fakemar)
+ 
+</script>
+</body></html>
