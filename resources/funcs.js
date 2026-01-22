@@ -45,9 +45,6 @@ function mksidenav()
  sn.style.borderStyle = 'hidden solid hidden hidden'
  sn.style.borderColor = 'var(--juicebox-orange-dark)'
  sn.style.justifyContent = 'flex-start'
-/*
- sn.style.backgroundColor = 'var(--juicebox-orange)'
-*/
 
  return sn
 }
@@ -56,8 +53,8 @@ function mklogo()
 {
  let imgbx = document.createElement('div')
  imgbx.className = 'imagebox'
- imgbx.style.width = '100vw'
- imgbx.style.height = '100vh'
+ imgbx.style.width = '100%'
+ imgbx.style.height = '100%'
  
  let img = document.createElement('img')
  img.src = 'resources/Color Logo No-Subtext.png'
@@ -71,6 +68,7 @@ function mklogo()
 
 function mkframe() {
  let fram = document.createElement('iframe')
+ fram.id = 'frame'
  fram.title = 'Paradigm Toys main frame'
  fram.src = 'framconts.htm'
  fram.style.width = '100%'
@@ -125,26 +123,13 @@ function mkcover()
  let welcome = 'Welcome to Paradigm Toys, home of professional begleri! '
  let mar = mkmarquee(marstring)
  mar.style.gridColumn = '1 / span 2'
- mar.style.backgroundColor = 'var(--paradigm-pink)'
  mar.style.borderStyle = 'none none solid none'
  mar.style.borderColor = 'var(--paradigm-pink-dark)'
-/*
- let mar2 = mkmarquee(marstring)
- mar2.style.gridColumn = '1 / span 2'
- mar2.style.backgroundColor = 'var(--paradigm-pink)'
- mar2.style.gridColumn = '1 / span 2'
-*/
 
  let sn = mksidenav()
-/*
- sn.style.gridColumns = '2 / 1 / span 1 / span 1' 
-*/
  sn.id = 'sidenav'
 
  let fram = mkframe()
-/*
- fram.style.gridArea = '2 / 2'
-*/
 
  let foot = mkfooter()
  foot.style.gridColumn = '1 / span 2'
@@ -169,17 +154,18 @@ function mkdisplaybox()
  return dbox
 }
 
-function mkaccordionel(text)
+function mkaccordionel({txt,act})
 {
  el = document.createElement('div')
- el.innerHTML = text
  el.className = 'accordion-element'
  el.style.padding = '0.5rem'
  el.style.display = 'none'
  el.style.flexFlow = 'row nowrap'
- el.style.justifyContent = 'flex-start'
+ //el.style.justifyContent = 'flex-start'
  el.style.borderStyle = 'solid'
  el.style.gridColumn = 2
+ el.innerHTML = txt
+ el.addEventListener('click',act)
 
  return el
 }
@@ -197,7 +183,6 @@ function mkaccordion(text, links = null)
  let first = document.createElement('div')
  first.className = 'accordion-first'
  first.style.padding = '0.5rem'
- first.style.flexFlow = 'row nowrap'
  first.style.justifyContent = 'flex-start'
  first.style.borderStyle = 'solid'
  first.style.gridColumn = '1 / span 2'

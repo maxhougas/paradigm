@@ -1,8 +1,23 @@
 <!DOCTYPE html>
 <html><head>
+
 <title>Paradigm Toys</title>
+
+<meta charset='UTF-8' />
+<meta name="description" content="Paradigm Toys offers high-quality skill toys, fidgets, and puzzles for enthusiasts seeking a unique, tactile experience." />
+
+<!-- Social Media Card -->
+<meta property="og:title" content="Paradigm Toys – Skill Toys. Fidgets. Puzzles.">
+<meta property="og:description" content="Paradigm Toys offers high-quality skill toys, fidgets, and puzzles for enthusiasts seeking a unique, tactile experience.">
+<meta property="og:image" content="https://www.paradigmtoys.com/assets/logo/SocialCard.png">
+<meta property="og:url" content="https://www.paradigmtoys.com">
+<meta property="og:type" content="website">
+
+<link rel='icon' type='image/svg+xml' href='resources/favicon.svg' />
 <link rel='stylesheet' href='resources/paradigm.css' />
+
 <script src=resources/funcs.js></script>
+
 </head><body>
 
 <noscript>
@@ -22,37 +37,35 @@
  //let dbox = mkdisplaybox()
  //main.appendChild(dbox)
 
- let acc = mkaccordion(['MrKitty','<a href=kitty1.html>kitty1</a>','<a href=kitty1.html>kitty2</a>','<a href=kitty1.html>kitty3</a>'])
+ let fram = document.getElementById('frame')
+ let l1 = {
+  txt: 'Logo',
+  act: () => fram.src = 'framconts.htm',
+ }
+ let l2 = {
+  txt: 'Just A Page',
+  act: () => fram.src = 'justapage.htm',
+ }
+
+ let acc = mkaccordion(['MrKitty',l1,l2])
  let sn = document.getElementById('sidenav')
  sn.appendChild(acc)
 
+/*
  let fakemar = document.createElement('div')
  let fakeslide = document.createElement('div')
  let fakemar0 = document.createElement('div')
  let fakehead0 = document.createElement('h1')
-/*
- let fakemar1 = document.createElement('div')
- let fakehead1 = document.createElement('h1')
-*/
 
  fakehead0.innerHTML = 'This is a wildly long sentence about a really cool website called paradigmtoys.com where you can get cool skill toys for the low low price of 1995. '
  fakehead0.style.textWrap = 'nowrap'
-/*
- fakehead1.innerHTML = 'This is a wildly long sentence about a really cool website called paradigmtoys.com where you can get cool skill toys for the low low price of 1995. '
- fakehead1.style.textWrap = 'nowrap'
-*/
 
  fakemar0.style.flexFlow = 'row nowrap'
  fakemar0.style.width = 'max-content'
  fakemar0.style.height = 'min-content'
  fakemar0.style.justiyfContebnt = 'flex-start'
  fakemar0.appendChild(fakehead0)
-/*
- fakemar1.style.flexFlow = 'row nowrap'
- fakemar1.style.width = 'max-content'
- fakemar1.style.height = 'min-content'
- fakemar1.appendChild(fakehead1)
-*/
+
 
  fakeslide.style.flexFlow = 'row nowrap'
  fakeslide.style.minWidth = '200%'
@@ -68,6 +81,10 @@
  fakemar.width = '100%'
  fakemar.style.justifyContent = 'left'
  main.appendChild(fakemar)
+
+ let fram = document.getElementById('frame')
+ fram.src = 'justapage.htm'
+*/
  
 </script>
 </body></html>
