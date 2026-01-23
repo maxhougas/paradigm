@@ -7,11 +7,11 @@
 <meta name="description" content="Paradigm Toys offers high-quality skill toys, fidgets, and puzzles for enthusiasts seeking a unique, tactile experience." />
 
 <!-- Social Media Card -->
-<meta property="og:title" content="Paradigm Toys – Skill Toys. Fidgets. Puzzles.">
-<meta property="og:description" content="Paradigm Toys offers high-quality skill toys, fidgets, and puzzles for enthusiasts seeking a unique, tactile experience.">
-<meta property="og:image" content="https://www.paradigmtoys.com/assets/logo/SocialCard.png">
-<meta property="og:url" content="https://www.paradigmtoys.com">
-<meta property="og:type" content="website">
+<meta property="og:title" content="Paradigm Toys – Skill Toys. Fidgets. Puzzles." />
+<meta property="og:description" content="Paradigm Toys offers high-quality skill toys, fidgets, and puzzles for enthusiasts seeking a unique, tactile experience." />
+<meta property="og:image" content="https://www.paradigmtoys.com/assets/logo/SocialCard.png" />
+<meta property="og:url" content="https://www.paradigmtoys.com" />
+<meta property="og:type" content="website" />
 
 <link rel='icon' type='image/svg+xml' href='resources/favicon.svg' />
 <link rel='stylesheet' href='resources/paradigm.css' />
@@ -28,8 +28,6 @@
 </div>
 
 <script>
- let paradigm = "<h1>Welcome to Paradigm toys, home of uncommonly professional begleri! </h1>"
- let marquee = mkmarquee(paradigm)
  let main = document.getElementById('main')
  let ban = mkcover()
  main.appendChild(ban)
@@ -37,54 +35,21 @@
  //let dbox = mkdisplaybox()
  //main.appendChild(dbox)
 
- let fram = document.getElementById('frame')
- let l1 = {
-  txt: 'Logo',
-  act: () => fram.src = 'framconts.htm',
- }
- let l2 = {
-  txt: 'Just A Page',
-  act: () => fram.src = 'justapage.htm',
- }
-
- let acc = mkaccordion(['MrKitty',l1,l2])
- let sn = document.getElementById('sidenav')
- sn.appendChild(acc)
-
 /*
- let fakemar = document.createElement('div')
- let fakeslide = document.createElement('div')
- let fakemar0 = document.createElement('div')
- let fakehead0 = document.createElement('h1')
-
- fakehead0.innerHTML = 'This is a wildly long sentence about a really cool website called paradigmtoys.com where you can get cool skill toys for the low low price of 1995. '
- fakehead0.style.textWrap = 'nowrap'
-
- fakemar0.style.flexFlow = 'row nowrap'
- fakemar0.style.width = 'max-content'
- fakemar0.style.height = 'min-content'
- fakemar0.style.justiyfContebnt = 'flex-start'
- fakemar0.appendChild(fakehead0)
-
-
- fakeslide.style.flexFlow = 'row nowrap'
- fakeslide.style.minWidth = '200%'
- fakeslide.style.width = 'max-content'
- fakeslide.style.height = 'min-content'
- fakeslide.style.justifyContent = 'flex-start'
- fakeslide.append(fakemar0,fakemar0.cloneNode(true))
-
- fakemar.appendChild(fakeslide)
-
- fakemar.style.display = 'block'
- fakemar.style.flexFlow = 'row nowrap'
- fakemar.width = '100%'
- fakemar.style.justifyContent = 'left'
- main.appendChild(fakemar)
-
  let fram = document.getElementById('frame')
- fram.src = 'justapage.htm'
+
+ let store = document.createElement('h1')
+ store.innerHTML = 'Store'
+
+ let acc = mkaccordion('Skill Toys',PAGES,chframsec)
+ let acc2 = mkaccordion('Puzzles',[])
+
+ //sn.append(store,acc,acc2)
+ //console.log(document.getElementById('frame-outer').zoom)
 */
- 
+
+ let sn = document.getElementById('sidenav')
+ sn.append(...mkaccordions(GPGS))
+
 </script>
 </body></html>

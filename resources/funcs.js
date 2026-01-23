@@ -1,3 +1,24 @@
+const FRAMURL = 'framconts.htm#'
+
+const LOGOPAGES = ['Logo', []]
+const MISSIONPAGES = ['Mission Statement', []]
+const METAPAYL = ['Meta', [LOGOPAGES, MISSIONPAGES]]
+
+const SKILLTOYPAGES = ['Skill Toys', ['Begleri', 'Knuckle Rolers']]
+const PUZZLEPAGES = ['Puzzles', ['Puzzles of the First Kind', 'Puzzles of the Second Kind']]
+const STOREPAYL = ['Store', [SKILLTOYPAGES, PUZZLEPAGES]]
+
+const GPGS = [METAPAYL, STOREPAYL]
+
+const PAGES = ['Logo', 'Just A Page', 'Begleri', 'Knuckle Rollers']
+const FILLER = '*Begel Larry'
+const LFILLER = '*PARADIGM TOYS*SKILL TOYS*BEGLERI*KNUCKLE ROLLERS*WEARABLES*CLASSIC PUZZELS*LOREM IPSUM*AND A FEW OTHER THINGS AS WELL'
+const BLANK = 'THIS SPACE INTENTIONALLY LEFT BLANK'
+
+const TAGLINE = 'Paradigm Toys – Skill Toys. Fidgets. Puzzles.'
+const ALTTAGLINE = 'Paradigm Toys - Play with Prupose.'
+const MISSIONSTATEMENT = 'Paradigm Toys offers high-quality skill toys, fidgets, and puzzles for enthusiasts seeking a unique, tactile experience.'
+
 function mkmarquee(txt = 'DE FAULT ')
 {
  let marquee = document.createElement('div')
@@ -43,39 +64,60 @@ function mksidenav()
  let sn = document.createElement('div')
  sn.className = 'sidenav'
  sn.style.borderStyle = 'hidden solid hidden hidden'
- sn.style.borderColor = 'var(--juicebox-orange-dark)'
+ sn.style.borderColor = 'var(--alt-border-col)'
  sn.style.justifyContent = 'flex-start'
+ sn.style.padding = '0rem 1rem 0rem 0rem'
 
  return sn
 }
 
 function mklogo()
 {
- let imgbx = document.createElement('div')
- imgbx.className = 'imagebox'
- imgbx.style.width = '100%'
- imgbx.style.height = '100%'
- 
  let img = document.createElement('img')
  img.src = 'resources/Color Logo No-Subtext.png'
  img.alt = 'Paradigm Toys Logo – Skill Toys, Fidgets, Puzzles'
  img.style.width = '50%'
 
- imgbx.appendChild(img)
+ let imgbx = document.createElement('div')
+ imgbx.className = 'imagebox'
+ imgbx.style.borderStyle = 'none solid none none'
+ imgbx.style.borderColor = 'var(--alt-border-col)'
+ imgbx.style.padding = 'none'
+ let tag = document.createElement('h1')
+ tag.innerHTML = TAGLINE
+ let hint = document.createElement('div')
+ hint.innerHTML = '(scroll down)'
+ imgbx.append(img,tag,hint)
 
- return imgbx 
+
+ let spcbx = document.createElement('div')
+ spcbx.className = 'spacebox'
+ spcbx.style.margin = '0.5rem'
+ spcbx.style.minWidth = '15rem'
+ spcbx.style.width = '15rem'
+ spcbx.innerHTML = BLANK 
+ 
+ let fullwidth = document.createElement('div')
+ fullwidth.style.flexFlow = 'row nowrap'
+ fullwidth.append(imgbx,spcbx)
+
+ return fullwidth 
 }
 
 function mkframe() {
  let fram = document.createElement('iframe')
- fram.id = 'frame'
+ fram.id = 'frame-outside'
+ fram.className = 'frame'
  fram.title = 'Paradigm Toys main frame'
  fram.src = 'framconts.htm'
  fram.style.width = '100%'
  fram.style.height = '100%'
  fram.style.borderStyle = 'none'
 
- return fram
+ let frambx = document.createElement('div')
+ frambx.appendChild(fram)
+
+ return frambx
 }
 
 function mkfooter()
@@ -107,29 +149,77 @@ function mkfooter()
  return foot
 }
 
+function mkanchor(superego)
+{
+ let anchor = document.createElement('a')
+ anchor.id = superego
+ return anchor
+}
+
+function mkpage(pagename)
+{
+ let page = document.createElement('div')
+ page.className = 'page'
+ page.id = sannam(pagename)
+ page.style.display = 'grid'
+ page.style.padding = '0.5rem'
+ page.style.gap = '0.5rem'
+ page.style.width = '100vw'
+ page.style.height = '100vh'
+
+ return page
+}
+
+function mkpages(gpgs)
+{
+ let allpgs = []
+ function mkoneacc(sect)
+ {
+  allpgs = allpgs.concat(sect[1].length ? sect[1] : [sect[0]])
+ }
+ function mksect(sect)
+ {
+  sect[1].forEach(e => mkoneacc(e))
+ }
+ gpgs.forEach(e => mksect(e))
+
+ let pg = []
+ function finagglepage(e)
+ {
+  thispg = mkpage(sannam(e))
+  thispg.innerHTML = '<h1>'+e+'</h1>'
+  pg.push(thispg)
+/*
+  document.getElementById('frame-inner').appendChild(thispg)
+*/
+ }
+ allpgs.forEach(e => finagglepage(e))
+
+ pg[0].innerHTML = ''
+ pg[0].appendChild(mklogo())
+
+ pg[1].innerHTML = '<h1>'+MISSIONSTATEMENT+'</h1>'
+
+ return pg;
+}
+
 function mkcover()
 {
- let cover = document.createElement('div')
- cover.className = 'cover'
- cover.style.width = '100vw'
- cover.style.height = '100vh'
- cover.style.padding = '0.5rem'
- cover.style.display = 'grid'
- cover.style.gridTemplate = '3rem minmax(0%,100%) 3rem / 15rem'
- cover.style.gap = '0.5rem'
+ let cover = mkpage('cover')
+ cover.style.gridTemplate = '3rem minmax(0%,100%) 3rem / 15rem minmax(0%,100%) '
 
- let st = 'Short Test'
- let marstring = '*PARADIGM TOYS*SKILL TOYS*BEGLERI*KNUCKLE ROLLERS*WEARABLES*CLASSIC PUZZELS*LOREM IPSUM*AND A FEW OTHER THINGS AS WELL'
- let welcome = 'Welcome to Paradigm Toys, home of professional begleri! '
- let mar = mkmarquee(marstring)
+ let mar = mkmarquee(LFILLER)
  mar.style.gridColumn = '1 / span 2'
  mar.style.borderStyle = 'none none solid none'
- mar.style.borderColor = 'var(--paradigm-pink-dark)'
+ mar.style.borderColor = 'var(--alt-border-col)'
 
  let sn = mksidenav()
  sn.id = 'sidenav'
+ sn.className = 'sidenav'
+ sn.style.gridColumn = '1'
 
  let fram = mkframe()
+ fram.style.gridColumn = '2 / span 2'
 
  let foot = mkfooter()
  foot.style.gridColumn = '1 / span 2'
@@ -154,7 +244,7 @@ function mkdisplaybox()
  return dbox
 }
 
-function mkaccordionel({txt,act})
+function mkaccordionel(txt,cbf)
 {
  el = document.createElement('div')
  el.className = 'accordion-element'
@@ -165,36 +255,19 @@ function mkaccordionel({txt,act})
  el.style.borderStyle = 'solid'
  el.style.gridColumn = 2
  el.innerHTML = txt
- el.addEventListener('click',act)
+ el.addEventListener('click', () => cbf(txt))
 
  return el
 }
 
-function mkaccordion(text, links = null)
+function sannam(txt)
 {
- if(!Array.isArray(text))
-  text = [text];
- let acc = document.createElement('div')
- acc.className = 'accordion'
- acc.style.display = 'grid'
- acc.style.gridTemplateColumns = '1fr 9fr'
- acc.style.height = 'min-content'
+ return txt.toLowerCase().replaceAll(' ','')
+}
 
- let first = document.createElement('div')
- first.className = 'accordion-first'
- first.style.padding = '0.5rem'
- first.style.justifyContent = 'flex-start'
- first.style.borderStyle = 'solid'
- first.style.gridColumn = '1 / span 2'
-
- first.innerHTML = text[0]
- first.addEventListener('click', e => operateaccordion(e.target))
- acc.appendChild(first)
- let i
- for(i = 1; i < text.length; ++i)
-  acc.appendChild(mkaccordionel(text[i]))
-
- return acc
+function chframsec(txt)
+{
+ document.getElementById('frame-outside').src = FRAMURL + sannam(txt)
 }
 
 function operateaccordion(first)
@@ -204,3 +277,61 @@ function operateaccordion(first)
  for(i=1;i<ch.length;++i)
   ch.item(i).style.display = ch.item(i).style.display == 'flex' ? 'none' : 'flex'
 }
+
+function mkaccordion(head, txt, cbf)
+{
+ if(!Array.isArray(txt))
+  throw new Error('txt is not array in mksnaccordion')
+
+ let acc = document.createElement('div')
+ acc.className = 'accordion'
+ acc.style.display = 'grid'
+ acc.style.gridTemplateColumns = '2fr 8fr'
+ acc.style.height = 'min-content'
+
+ let first = document.createElement('div')
+ first.className = 'accordion-first accordion-element'
+ first.style.padding = '0.5rem'
+ first.style.justifyContent = 'flex-start'
+ first.style.borderStyle = 'solid'
+ first.style.gridColumn = '1 / span 2'
+ first.innerHTML = head
+ if(txt.length)
+  first.addEventListener('click', e => operateaccordion(e.target))
+ else
+  first.addEventListener('click', () => cbf(head))
+
+ acc.appendChild(first)
+
+ let i
+ for(i = 0; i < txt.length; ++i)
+  acc.appendChild(mkaccordionel(txt[i], cbf))
+
+ return acc
+}
+
+function mksnsection(payl)
+{
+ sect = document.createElement('div')
+ sect.className = 'sidenav-section'
+ head = document.createElement('h1')
+ head.innerHTML = payl[0]
+ sect.appendChild(head)
+
+ let accs = payl[1].map(e => mkaccordion(e[0],e[1],chframsec))
+ sect.append(...accs)
+
+ sect.style.height = 'min-content'
+
+ return sect
+}
+
+
+function mkaccordions(gpgs)
+{
+ sects = []
+ gpgs.forEach(e => sects.push(mksnsection(e)))
+
+ return sects
+}
+
