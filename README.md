@@ -1,7 +1,7 @@
 <a name=top />
 
 # Paradigm
-If I'm being honest, this is mostly experiments with 'nilla JS
+Web stuff for Paradigm Toys
 
 ## Table of Contents
 
