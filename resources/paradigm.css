@@ -29,7 +29,18 @@
  --alt-bgd-col: var(--paradigm-pink);
  --alt-text-col: var(--highlighter-yellow);
  --alt-border-col: var(--paradigm-pink-dark);
- font-size: 16px;
+ font-size: 15px;
+ --flat-logo-sub-min-width: 300px;
+ --flat-logo-nosub-min-width: 150px;
+ --reduced-logo-min-width: 30px;
+ --full-logo-sub-min-width: 200px;
+ --full-logo-nosub-min-width: 150px;
+ --flat-logo-sub-min-width-rem: 20rem;
+ --flat-logo-nosub-min-width-rem: 10rem; 
+ --reduced-logo-min-width-rem: 2rem;
+ --full-logo-sub-min-width-rem: 14rem;
+ --full-logo-nosub-min-width: 10rem;
+ --font-size-header: 2rem;
 /*
  --def-text-col: #A0A0A0;
  --def-bgd-col: #141414;
@@ -56,6 +67,16 @@ body {
  margin: 0rem;
  padding: 0rem;
 }
+
+
+/*
+#main {
+ height: 100vh;
+ width: 100vw;
+ padding: 0.5rem;
+}
+*/
+
 
 h1,h2,h3,h4,h5,h6 {
  font-family: "Cooper Black";

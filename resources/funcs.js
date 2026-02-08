@@ -66,7 +66,8 @@ function mksidenav()
  sn.style.borderStyle = 'hidden solid hidden hidden'
  sn.style.borderColor = 'var(--alt-border-col)'
  sn.style.justifyContent = 'flex-start'
- sn.style.padding = '0rem 1rem 0rem 0rem'
+ sn.style.padding = '0rem 0.5rem 0rem 0.5rem'
+ sn.style.backgroundColor = 'var(--griptape-gray-dark)'
 
  return sn
 }
@@ -80,31 +81,40 @@ function mklogo()
 
  let imgbx = document.createElement('div')
  imgbx.className = 'imagebox'
+/*
  imgbx.style.borderStyle = 'none solid none none'
  imgbx.style.borderColor = 'var(--alt-border-col)'
- imgbx.style.padding = 'none'
+*/
+ imgbx.style.height = 'min-content'
  let tag = document.createElement('h1')
  tag.innerHTML = TAGLINE
  let hint = document.createElement('div')
  hint.innerHTML = '(scroll down)'
  imgbx.append(img,tag,hint)
 
-
  let spcbx = document.createElement('div')
  spcbx.className = 'spacebox'
- spcbx.style.margin = '0.5rem'
+ spcbx.style.margin = '0rem 0rem 0rem 0.5rem'
  spcbx.style.minWidth = '15rem'
  spcbx.style.width = '15rem'
- spcbx.innerHTML = BLANK 
+ spcbx.style.textAlign = 'center'
+ spcbx.style.backgroundColor = 'var(--griptape-gray-dark)'
  
  let fullwidth = document.createElement('div')
  fullwidth.style.flexFlow = 'row nowrap'
  fullwidth.append(imgbx,spcbx)
+/*
+ fullwidth.style.minHeight = '100%'
+ fullwidth.style.height = '100%'
+ fullwidth.style.flex = '0 0 100%'
+*/
+ fullwidth.className = 'fullwidth'
 
  return fullwidth 
 }
 
-function mkframe() {
+function mkframe()
+{
  let fram = document.createElement('iframe')
  fram.id = 'frame-outside'
  fram.className = 'frame'
@@ -124,8 +134,11 @@ function mkfooter()
 {
  let foot = document.createElement('div')
  foot.className = 'footer'
+ foot.style.borderStyle = 'solid none solid none'
+/*
  foot.style.borderTop = '0.25rem solid'
  foot.style.borderBottom = '0.25rem solid'
+*/
  foot.style.justifyContent = 'space-between'
  foot.style.flexFlow = 'row nowrap'
  foot.style.padding = '1rem 2rem'
@@ -161,13 +174,25 @@ function mkpage(pagename)
  let page = document.createElement('div')
  page.className = 'page'
  page.id = sannam(pagename)
- page.style.display = 'grid'
- page.style.padding = '0.5rem'
- page.style.gap = '0.5rem'
  page.style.width = '100vw'
  page.style.height = '100vh'
 
  return page
+}
+
+function mkdisplayboxes()
+{
+ let boxes = document.createElement('div')
+ boxes.style.flexFlow = 'row wrap'
+ //boxes.style.justifyContent = 'center'
+ //boxes.style.alignItems = 'top'
+ //boxes.style.alignContent = 'flex-start'
+ let nboxes = 10;
+ let i
+ for(i = 0; i < nboxes; ++i)
+  boxes.appendChild(mkdisplaybox())
+
+ return boxes
 }
 
 function mkpages(gpgs)
@@ -198,7 +223,13 @@ function mkpages(gpgs)
  pg[0].innerHTML = ''
  pg[0].appendChild(mklogo())
 
- pg[1].innerHTML = '<h1>'+MISSIONSTATEMENT+'</h1>'
+ let mstat = document.createElement('h1')
+ pg[1].innerHTML = ''
+ mstat.innerHTML = MISSIONSTATEMENT
+ mstat.style.textAlign = 'center'
+ pg[1].appendChild(mstat)
+ pg[2].innerHTML = ''
+ pg[2].appendChild(mkdisplayboxes())
 
  return pg;
 }
@@ -206,6 +237,9 @@ function mkpages(gpgs)
 function mkcover()
 {
  let cover = mkpage('cover')
+ cover.style.display = 'grid'
+ cover.style.gap = '0.5rem'
+ cover.style.padding = '0.5rem'
  cover.style.gridTemplate = '3rem minmax(0%,100%) 3rem / 15rem minmax(0%,100%) '
 
  let mar = mkmarquee(LFILLER)
@@ -233,10 +267,17 @@ function mkdisplaybox()
  let dbox = document.createElement('div')
  dbox.className = 'display-box'
  let p0 = document.createElement('div')
- p0.style.backgroundColor = 'white'
- p0.innerHTML = 'PICTURE OF SKILL TOY'
+ p0.style.backgroundColor = 'var(--griptape-gray-dark)'
+ //p0.innerHTML = 'PICTURE OF SKILL TOY'
+ let imgguy = document.createElement('img');
+ imgguy.src = 'meta/signalis_logo-1160x653.jpeg'
+ imgguy.style.maxWidth = '100%'
+ imgguy.style.maxHeight = '100%'
+ p0.addEventListener('mouseenter',e => e.target.firstElementChild.src = 'meta/signalis-elster-2012043096.gif')
+ p0.addEventListener('mouseleave',e => e.target.firstElementChild.src = 'meta/signalis_logo-1160x653.jpeg')
+ p0.appendChild(imgguy)
  let p1 = document.createElement('div')
- p1.style.backgroundColor = 'white'
+ p1.style.backgroundColor = 'var(--griptape-gray-dark)'
  p1.innerHTML = 'DESCRIPTION OF SKILL TOY'
 
  dbox.append(p0,p1)

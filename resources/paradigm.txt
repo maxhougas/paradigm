@@ -2,6 +2,7 @@ tag-line=Paradigm Toys – Skill Toys. Fidgets. Puzzles.
 tag-line-proposed=Paradigm Toys - Play with Prupose.
 mission-statement=Paradigm Toys offers high-quality skill toys, fidgets, and puzzles for enthusiasts seeking a unique, tactile experience.
 default-text-font=Arial Rounded
-default-text-size=16px=1rem=16pt
+default-text-size=15px=1rem=15pt
 default-head-font=Cooper Black
 default-head-size=2rem
+default-spacing=0.5rem
