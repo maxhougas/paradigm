@@ -19,14 +19,14 @@
 <script src=resources/funcs.js></script>
 
 </head><body>
-</body></head>
 
 <div id='frame-inside'></div>
 
 <script>
- let pg = mkpages(GPGS)
+ document.getElementById('frame-inside').append(...mkpages(PAGES))
+ //let pg = mkpages(PAGES)
 
- let fram = document.getElementById('frame-inside')
- fram.append(...pg)
+ //let fram = document.getElementById('frame-inside')
+ //fram.append(...pg)
 </script>
 </body></html>

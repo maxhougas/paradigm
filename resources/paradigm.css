@@ -23,11 +23,15 @@
  --griptape-gray-dark: #151515;
  --griptape-gray: #494949;
  --griptape-gray-light: #888888;
- --def-bgd-col: var(--griptape-gray);
+ --def-bgd-col: white;
  --def-text-col: var(--griptape-gray-light);
  --def-border-col: var(--griptape-gray-light);
- --alt-bgd-col: var(--paradigm-pink);
- --alt-text-col: var(--highlighter-yellow);
+ --def-border-radius: 1rem;
+ --def-border-width: 0.2rem;
+ --def-gap: 0.5rem;
+ --def-padding: 1rem;
+ --alt-bgd-col: var(--griptape-gray);
+ --alt-text-col: var(--pool-blue);
  --alt-border-col: var(--paradigm-pink-dark);
  font-size: 15px;
  --flat-logo-sub-min-width: 300px;
@@ -68,15 +72,10 @@ body {
  padding: 0rem;
 }
 
-
-/*
-#main {
- height: 100vh;
- width: 100vw;
- padding: 0.5rem;
+text {
+ text-align: center;
+ font-family: "Arial Rounded";
 }
-*/
-
 
 h1,h2,h3,h4,h5,h6 {
  font-family: "Cooper Black";
@@ -87,41 +86,68 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 div {
- display: flex;
- flex-flow: column nowrap;
- justify-content: center;
  align-content: center;
  align-items: center;
- box-sizing: border-box;
- border-radius: 1rem 1rem 1rem 1rem;
- border-style: none;
- padding: 0rem;
- margin: 0rem;
- gap: 0rem;
- width: 100%;
- height: 100%;
  border-color: var(--def-border-col);
+ border-radius: var(--def-border-radius);
+ border-style: none;
+ border-width: var(--def-border-width);
+ box-sizing: border-box;
  color: var(--def-text-col);
+ display: flex;
+ flex-flow: column nowrap;
+ gap: var(--def-gap);
+ height: 100%;
+ justify-content: center;
+ margin: 0rem;
+ padding: 0rem;
+ width: 100%;
 }
 
-a:link {
+a {
  color: var(--def-text-col);
+ text-decoration: none;
 }
-a:visited {
- color: var(--def-text-col);
+
+.page-short {
+ height: 100vh;
+ padding: var(--def-padding);
 }
-a:hover {
- color: var(--def-text-col);
+
+.page-long {
+ padding: var(--def-padding);
 }
-a:active {
- color: var(--def-text-col);
+
+.products {
+ flex-flow: row wrap;
 }
 
 .display-box {
- width: 200px;
- height: 300px;
  display: grid;
- grid-template: 2fr 1fr / 1fr;
- gap: 10px;
- padding: 10px;
+ grid-template: minmax(0%,100%) 4rem / 1fr;
+ height: 30rem;
+ width: 25rem;
+}
+
+.marquee {
+ background-color: var(--paradigm-pink);
+ border-color: var(--alt-border-col);
+ border-style: none none solid none;
+}
+
+.marquee-text {
+ color: white;
+ font-family: 'Arial Rounded';
+}
+
+.cover {
+ display: grid;
+ grid-template: 3rem minmax(0%,100%) calc(2*var(--def-border-width) + 2*var(--def-padding) + 1rem) / 1fr;
+}
+
+.footer {
+ background-color: var(--griptape-gray);
+ display: grid;
+ grid-template: 1fr / 1fr 1fr 1fr;
+ padding: var(--def-padding) 2rem;
 }

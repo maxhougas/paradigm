@@ -10,14 +10,29 @@ const STOREPAYL = ['Store', [SKILLTOYPAGES, PUZZLEPAGES]]
 
 const GPGS = [METAPAYL, STOREPAYL]
 
-const PAGES = ['Logo', 'Just A Page', 'Begleri', 'Knuckle Rollers']
 const FILLER = '*Begel Larry'
 const LFILLER = '*PARADIGM TOYS*SKILL TOYS*BEGLERI*KNUCKLE ROLLERS*WEARABLES*CLASSIC PUZZELS*LOREM IPSUM*AND A FEW OTHER THINGS AS WELL'
 const BLANK = 'THIS SPACE INTENTIONALLY LEFT BLANK'
 
+const MARQUEETEXT = 'Skill Toys. Puzzles. Fidgets. Skill Toys. Puzzles. Fidgets. Skill Toys. Puzzles. Fidgets. Skill Toys. Puzzles. Fidgets. Skill Toys. Puzzles. Fidgets.&nbsp'
+
 const TAGLINE = 'Paradigm Toys – Skill Toys. Fidgets. Puzzles.'
 const ALTTAGLINE = 'Paradigm Toys - Play with Prupose.'
 const MISSIONSTATEMENT = 'Paradigm Toys offers high-quality skill toys, fidgets, and puzzles for enthusiasts seeking a unique, tactile experience.'
+
+const PAGES = [
+ {pagename:'Logo',inner:mklogo()},
+ {pagename:'Mission Statement',inner:mkh1(MISSIONSTATEMENT)},
+ {pagename:'Begleri',inner:mkdisplayboxes(),length:true},
+ {pagename:'Knuckle Rollers',inner:mkh1('Knuckle Rollers')}
+]
+
+function mkh1(txt = 'DE FAULT')
+{
+ let head = document.createElement("h1")
+ head.innerHTML = txt
+ return head
+}
 
 function mkmarquee(txt = 'DE FAULT ')
 {
@@ -54,11 +69,17 @@ function mkmarquee(txt = 'DE FAULT ')
  marquee.style.alignItems = 'flex-start'
  marquee.style.justifyContent = 'flex-start'
  marquee.style.overflow = 'hidden'
+ marquee.style.borderRadius = '0rem'
  marquee.appendChild(slide)
 
  return marquee
 }
 
+function mktopnav()
+{
+}
+
+/*
 function mksidenav()
 {
  let sn = document.createElement('div')
@@ -71,6 +92,7 @@ function mksidenav()
 
  return sn
 }
+*/
 
 function mklogo()
 {
@@ -81,33 +103,18 @@ function mklogo()
 
  let imgbx = document.createElement('div')
  imgbx.className = 'imagebox'
-/*
- imgbx.style.borderStyle = 'none solid none none'
- imgbx.style.borderColor = 'var(--alt-border-col)'
-*/
  imgbx.style.height = 'min-content'
+
  let tag = document.createElement('h1')
  tag.innerHTML = TAGLINE
+
  let hint = document.createElement('div')
  hint.innerHTML = '(scroll down)'
  imgbx.append(img,tag,hint)
 
- let spcbx = document.createElement('div')
- spcbx.className = 'spacebox'
- spcbx.style.margin = '0rem 0rem 0rem 0.5rem'
- spcbx.style.minWidth = '15rem'
- spcbx.style.width = '15rem'
- spcbx.style.textAlign = 'center'
- spcbx.style.backgroundColor = 'var(--griptape-gray-dark)'
- 
  let fullwidth = document.createElement('div')
  fullwidth.style.flexFlow = 'row nowrap'
- fullwidth.append(imgbx,spcbx)
-/*
- fullwidth.style.minHeight = '100%'
- fullwidth.style.height = '100%'
- fullwidth.style.flex = '0 0 100%'
-*/
+ fullwidth.append(imgbx)
  fullwidth.className = 'fullwidth'
 
  return fullwidth 
@@ -135,29 +142,26 @@ function mkfooter()
  let foot = document.createElement('div')
  foot.className = 'footer'
  foot.style.borderStyle = 'solid none solid none'
-/*
- foot.style.borderTop = '0.25rem solid'
- foot.style.borderBottom = '0.25rem solid'
-*/
- foot.style.justifyContent = 'space-between'
- foot.style.flexFlow = 'row nowrap'
- foot.style.padding = '1rem 2rem'
- foot.style.fontSize = '1rem'
-
- let left = document.createElement('div')
- left.style.width = '0rem'
+ foot.style.height = '100%' // 'calc(2*var(--def-border-width) + 3rem)'
 
  let cw = document.createElement('div')
  const d = new Date()
- cw.innerHTML = '© ' + d.getFullYear() + ' Paradigm Toys'
- cw.style.width = 'max-content'
- cw.style.flexFlow = 'row nowrap'
+ cw.innerHTML = '<text>© ' + d.getFullYear() + ' Paradigm Toys</text>'
+ cw.style.gridColumn = '2'
 
  let img = document.createElement('img')
  img.src = 'resources/Flat Logo Reduced.png' 
  img.style.height = '1rem'
 
- foot.append(left,cw,img)
+ let imgbox = document.createElement('div')
+ imgbox.style.height = '100%'
+ imgbox.style.width = '100%'
+ imgbox.style.flexDirection = 'row'
+ imgbox.style.justifyContent = 'right'
+ imgbox.style.gridColumn = '3'
+ imgbox.append(img)
+
+ foot.append(cw,imgbox)
 
  return foot
 }
@@ -169,33 +173,107 @@ function mkanchor(superego)
  return anchor
 }
 
-function mkpage(pagename)
+function mkdisplaybox(description, price, staticpic, dynamicpic, url)
 {
- let page = document.createElement('div')
- page.className = 'page'
- page.id = sannam(pagename)
- page.style.width = '100vw'
- page.style.height = '100vh'
+ let imgguy = document.createElement('img');
+ imgguy.className = 'imgguy'
+ imgguy.src = staticpic
+ imgguy.style.maxWidth = '100%'
+ imgguy.style.maxHeight = '100%'
 
- return page
+ let pinkbox = document.createElement('div');
+ pinkbox.className = 'pinkbox'
+ pinkbox.style.backgroundColor = 'var(--paradigm-pink)'
+ pinkbox.style.flexDirection = 'row'
+ pinkbox.style.height = '3rem'
+ pinkbox.style.padding = '1rem'
+ pinkbox.innerHTML = '<text style="color:white">View on Etsy&nbsp</text><img style="height:1rem" src="resources/Link-Icon.png"/>'
+
+ let whitebox = document.createElement('div');
+ whitebox.className = 'whitebox'
+ whitebox.style.borderRadius = '0rem 0rem 1rem 1rem'
+ whitebox.style.backgroundColor = 'rgba(255,255,255,0.75)'
+ whitebox.style.position = 'absolute'
+ whitebox.style.top = 'calc(100% - 5rem)'
+ whitebox.style.height = '5rem'
+ whitebox.style.display = 'none'
+ whitebox.style.padding = '1rem'
+ whitebox.append(pinkbox)
+
+ let picbox = document.createElement('div')
+ picbox.className = 'picbox'
+ picbox.style.position = 'relative'
+ picbox.style.backgroundColor = 'var(--alt-bgd-col)'
+ picbox.append(imgguy,whitebox)
+
+ let desc = document.createElement('div')
+ desc.style.maxWidth = '50%'
+ desc.innerHTML = '<text>'+description+'</text>'
+
+ let pric = document.createElement('div')
+ pric.style.maxWidth = '50%'
+ pric.style.justifyContent = 'right'
+ pric.style.flexFlow = 'row nowrap'
+ pric.innerHTML = '<text>'+price+'</text>'
+
+ let wordbox = document.createElement('div')
+ wordbox.className = 'wordbox'
+ wordbox.style.flexFlow = 'row nowrap'
+ wordbox.style.backgroundColor = 'var(--alt-bgd-col)'
+ wordbox.style.height = '100%'
+ wordbox.style.padding = '1rem'
+ wordbox.append(desc,pric)
+
+ function mausing(e,inout)
+ {
+  let pic = e.target.firstElementChild.firstElementChild
+  let mod = e.target.firstElementChild.children[1]
+  pic.src = inout ? dynamicpic : staticpic
+  mod.style.display = inout ? 'flex' : 'none'
+ }
+
+ let dbox = document.createElement('div')
+ dbox.className = 'display-box'
+ dbox.append(picbox,wordbox)
+ dbox.addEventListener('mouseenter',e => mausing(e,true))
+ dbox.addEventListener('mouseleave',e => mausing(e,false))
+
+ let outerlink = document.createElement('a')
+ outerlink.className = 'display-box-out'
+ outerlink.href = url
+ outerlink.target = '_top'
+ outerlink.append(dbox)
+/*
+ let outbox = document.createElement('div')
+ outbox.className = 'display-box'
+ outbox.append(outerlink)
+*/
+ return outerlink 
 }
 
 function mkdisplayboxes()
 {
  let boxes = document.createElement('div')
- boxes.style.flexFlow = 'row wrap'
- //boxes.style.justifyContent = 'center'
- //boxes.style.alignItems = 'top'
- //boxes.style.alignContent = 'flex-start'
+ boxes.className = 'products'
  let nboxes = 10;
  let i
  for(i = 0; i < nboxes; ++i)
-  boxes.appendChild(mkdisplaybox())
+  boxes.append(mkdisplaybox('DESCRIPTION OF SKILL TOY','$19.95','resources/Rotating_Display.blend10000.png','resources/Vertebrae_Bead_render_v3_Optimized.gif','https://www.etsy.com/shop/ParadigmToys'))
 
  return boxes
 }
 
-function mkpages(gpgs)
+function mkpage(pagename, inner, length = false)
+{
+ let page = document.createElement('div')
+ page.className = length ? 'page-long' : 'page-short'
+ page.id = sannam(pagename)
+ page.append(inner)
+
+ return page
+}
+
+function mkpages(pages)
 {
  let allpgs = []
  function mkoneacc(sect)
@@ -206,7 +284,7 @@ function mkpages(gpgs)
  {
   sect[1].forEach(e => mkoneacc(e))
  }
- gpgs.forEach(e => mksect(e))
+ //gpgs.forEach(e => mksect(e))
 
  let pg = []
  function finagglepage(e)
@@ -214,12 +292,12 @@ function mkpages(gpgs)
   thispg = mkpage(sannam(e))
   thispg.innerHTML = '<h1>'+e+'</h1>'
   pg.push(thispg)
-/*
-  document.getElementById('frame-inner').appendChild(thispg)
-*/
  }
- allpgs.forEach(e => finagglepage(e))
+ //allpgs.forEach(e => finagglepage(e))
+ console.log(pages[0])
+ pg = pages.map(e => mkpage(e.pagename,e.inner,e.length ?? false))
 
+/*
  pg[0].innerHTML = ''
  pg[0].appendChild(mklogo())
 
@@ -228,61 +306,31 @@ function mkpages(gpgs)
  mstat.innerHTML = MISSIONSTATEMENT
  mstat.style.textAlign = 'center'
  pg[1].appendChild(mstat)
- pg[2].innerHTML = ''
+ pg[2] = mkpage(sannam(allpgs[2]),1)
  pg[2].appendChild(mkdisplayboxes())
+*/
 
  return pg;
 }
 
 function mkcover()
 {
- let cover = mkpage('cover')
- cover.style.display = 'grid'
- cover.style.gap = '0.5rem'
- cover.style.padding = '0.5rem'
- cover.style.gridTemplate = '3rem minmax(0%,100%) 3rem / 15rem minmax(0%,100%) '
+ let cover = document.createElement('div')
+ cover.style.height = '100vh'
+ cover.style.width = '100vw'
+ cover.className = 'cover'
 
- let mar = mkmarquee(LFILLER)
- mar.style.gridColumn = '1 / span 2'
- mar.style.borderStyle = 'none none solid none'
- mar.style.borderColor = 'var(--alt-border-col)'
-
- let sn = mksidenav()
- sn.id = 'sidenav'
- sn.className = 'sidenav'
- sn.style.gridColumn = '1'
+ let mar = mkmarquee(MARQUEETEXT)
+ mar.style.gridColumn = '1'
 
  let fram = mkframe()
- fram.style.gridColumn = '2 / span 2'
+ fram.style.gridColumn = '1'
 
  let foot = mkfooter()
- foot.style.gridColumn = '1 / span 2'
+ foot.style.gridColumn = '1'
 
- cover.append(mar,sn,fram,foot)
+ cover.append(mar,fram,foot)
  return cover
-}
-
-function mkdisplaybox()
-{
- let dbox = document.createElement('div')
- dbox.className = 'display-box'
- let p0 = document.createElement('div')
- p0.style.backgroundColor = 'var(--griptape-gray-dark)'
- //p0.innerHTML = 'PICTURE OF SKILL TOY'
- let imgguy = document.createElement('img');
- imgguy.src = 'meta/signalis_logo-1160x653.jpeg'
- imgguy.style.maxWidth = '100%'
- imgguy.style.maxHeight = '100%'
- p0.addEventListener('mouseenter',e => e.target.firstElementChild.src = 'meta/signalis-elster-2012043096.gif')
- p0.addEventListener('mouseleave',e => e.target.firstElementChild.src = 'meta/signalis_logo-1160x653.jpeg')
- p0.appendChild(imgguy)
- let p1 = document.createElement('div')
- p1.style.backgroundColor = 'var(--griptape-gray-dark)'
- p1.innerHTML = 'DESCRIPTION OF SKILL TOY'
-
- dbox.append(p0,p1)
-
- return dbox
 }
 
 function mkaccordionel(txt,cbf)
@@ -292,7 +340,6 @@ function mkaccordionel(txt,cbf)
  el.style.padding = '0.5rem'
  el.style.display = 'none'
  el.style.flexFlow = 'row nowrap'
- //el.style.justifyContent = 'flex-start'
  el.style.borderStyle = 'solid'
  el.style.gridColumn = 2
  el.innerHTML = txt
