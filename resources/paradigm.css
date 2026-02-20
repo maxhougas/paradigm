@@ -120,6 +120,7 @@ a {
 
 .products {
  flex-flow: row wrap;
+ gap: 1rem;
 }
 
 .display-box {

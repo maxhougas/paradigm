@@ -20,10 +20,23 @@ const TAGLINE = 'Paradigm Toys – Skill Toys. Fidgets. Puzzles.'
 const ALTTAGLINE = 'Paradigm Toys - Play with Prupose.'
 const MISSIONSTATEMENT = 'Paradigm Toys offers high-quality skill toys, fidgets, and puzzles for enthusiasts seeking a unique, tactile experience.'
 
+const BEGLERI = [
+ {desc:'DESCRIPTION',pric:'$59.95',stat:'resources/Rotating_Display.blend10000.png',dyn:'resources/Vertebrae_Bead_render_v3_Optimized.gif',link:'https://www.etsy.com/shop/ParadigmToys'},
+ {desc:'DESCRIPTION',pric:'$59.95',stat:'resources/Rotating_Display.blend10000.png',dyn:'resources/Vertebrae_Bead_render_v3_Optimized.gif',link:'https://www.etsy.com/shop/ParadigmToys'},
+ {desc:'DESCRIPTION',pric:'$59.95',stat:'resources/Rotating_Display.blend10000.png',dyn:'resources/Vertebrae_Bead_render_v3_Optimized.gif',link:'https://www.etsy.com/shop/ParadigmToys'},
+ {desc:'DESCRIPTION',pric:'$59.95',stat:'resources/Rotating_Display.blend10000.png',dyn:'resources/Vertebrae_Bead_render_v3_Optimized.gif',link:'https://www.etsy.com/shop/ParadigmToys'},
+ {desc:'DESCRIPTION',pric:'$59.95',stat:'resources/Rotating_Display.blend10000.png',dyn:'resources/Vertebrae_Bead_render_v3_Optimized.gif',link:'https://www.etsy.com/shop/ParadigmToys'},
+ {desc:'DESCRIPTION',pric:'$59.95',stat:'resources/Rotating_Display.blend10000.png',dyn:'resources/Vertebrae_Bead_render_v3_Optimized.gif',link:'https://www.etsy.com/shop/ParadigmToys'},
+ {desc:'DESCRIPTION',pric:'$59.95',stat:'resources/Rotating_Display.blend10000.png',dyn:'resources/Vertebrae_Bead_render_v3_Optimized.gif',link:'https://www.etsy.com/shop/ParadigmToys'},
+ {desc:'DESCRIPTION',pric:'$59.95',stat:'resources/Rotating_Display.blend10000.png',dyn:'resources/Vertebrae_Bead_render_v3_Optimized.gif',link:'https://www.etsy.com/shop/ParadigmToys'},
+ {desc:'DESCRIPTION',pric:'$59.95',stat:'resources/Rotating_Display.blend10000.png',dyn:'resources/Vertebrae_Bead_render_v3_Optimized.gif',link:'https://www.etsy.com/shop/ParadigmToys'},
+ {desc:'DESCRIPTION',pric:'$59.95',stat:'resources/Rotating_Display.blend10000.png',dyn:'resources/Vertebrae_Bead_render_v3_Optimized.gif',link:'https://www.etsy.com/shop/ParadigmToys'}
+]
+
 const PAGES = [
  {pagename:'Logo',inner:mklogo()},
  {pagename:'Mission Statement',inner:mkh1(MISSIONSTATEMENT)},
- {pagename:'Begleri',inner:mkdisplayboxes(),length:true},
+ {pagename:'Begleri',inner:mkdisplayboxes(BEGLERI),length:true},
  {pagename:'Knuckle Rollers',inner:mkh1('Knuckle Rollers')}
 ]
 
@@ -243,22 +256,15 @@ function mkdisplaybox(description, price, staticpic, dynamicpic, url)
  outerlink.href = url
  outerlink.target = '_top'
  outerlink.append(dbox)
-/*
- let outbox = document.createElement('div')
- outbox.className = 'display-box'
- outbox.append(outerlink)
-*/
+
  return outerlink 
 }
 
-function mkdisplayboxes()
+function mkdisplayboxes(prods)
 {
  let boxes = document.createElement('div')
  boxes.className = 'products'
- let nboxes = 10;
- let i
- for(i = 0; i < nboxes; ++i)
-  boxes.append(mkdisplaybox('DESCRIPTION OF SKILL TOY','$19.95','resources/Rotating_Display.blend10000.png','resources/Vertebrae_Bead_render_v3_Optimized.gif','https://www.etsy.com/shop/ParadigmToys'))
+ prods.forEach(e => boxes.append(mkdisplaybox(e.desc,e.pric,e.stat,e.dyn,e.link)))
 
  return boxes
 }
@@ -275,42 +281,7 @@ function mkpage(pagename, inner, length = false)
 
 function mkpages(pages)
 {
- let allpgs = []
- function mkoneacc(sect)
- {
-  allpgs = allpgs.concat(sect[1].length ? sect[1] : [sect[0]])
- }
- function mksect(sect)
- {
-  sect[1].forEach(e => mkoneacc(e))
- }
- //gpgs.forEach(e => mksect(e))
-
- let pg = []
- function finagglepage(e)
- {
-  thispg = mkpage(sannam(e))
-  thispg.innerHTML = '<h1>'+e+'</h1>'
-  pg.push(thispg)
- }
- //allpgs.forEach(e => finagglepage(e))
- console.log(pages[0])
- pg = pages.map(e => mkpage(e.pagename,e.inner,e.length ?? false))
-
-/*
- pg[0].innerHTML = ''
- pg[0].appendChild(mklogo())
-
- let mstat = document.createElement('h1')
- pg[1].innerHTML = ''
- mstat.innerHTML = MISSIONSTATEMENT
- mstat.style.textAlign = 'center'
- pg[1].appendChild(mstat)
- pg[2] = mkpage(sannam(allpgs[2]),1)
- pg[2].appendChild(mkdisplayboxes())
-*/
-
- return pg;
+ return pages.map(e => mkpage(e.pagename,e.inner,e.length ?? false))
 }
 
 function mkcover()
