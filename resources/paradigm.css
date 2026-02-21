@@ -30,6 +30,7 @@
  --def-border-width: 0.2rem;
  --def-gap: 0.5rem;
  --def-padding: 1rem;
+ --def-border-box-height: calc(2*var(--def-border-width) + 1rem + 2*var(--def-padding));
  --alt-bgd-col: var(--griptape-gray);
  --alt-text-col: var(--pool-blue);
  --alt-border-col: var(--paradigm-pink-dark);
@@ -78,9 +79,9 @@ text {
 }
 
 h1,h2,h3,h4,h5,h6 {
- font-family: "Cooper Black";
- color: var(--alt-text-col);
  box-sizing: border-box;
+ color: var(--alt-text-col);
+ font-family: "Cooper Black";
  margin: 0rem;
  padding: 0rem;
 }
@@ -130,6 +131,16 @@ a {
  width: 25rem;
 }
 
+.cover {
+ display: grid;
+ grid-template:
+  calc(var(--def-border-box-height) + 0.8rem)
+  calc(var(--def-border-box-height) + 1rem)
+  minmax(0%,100%)
+  var(--def-border-box-height)
+  / 1fr;
+}
+
 .marquee {
  background-color: var(--paradigm-pink);
  border-color: var(--alt-border-col);
@@ -141,9 +152,91 @@ a {
  font-family: 'Arial Rounded';
 }
 
-.cover {
+.topnav {
  display: grid;
- grid-template: 3rem minmax(0%,100%) calc(2*var(--def-border-width) + 2*var(--def-padding) + 1rem) / 1fr;
+ grid-template: 1fr / 1fr 1fr 1fr;
+ padding: 0 var(--def-padding) 0 var(--def-padding)
+}
+
+.navButton {
+ background-color: rgba(255,255,255,1);
+ border: solid;
+ height: calc(var(--def-border-box-height) + 1rem);
+ width: 100%;
+}
+
+@keyframes paradigm-shadow {
+ 0%   {box-shadow:
+  0rem 0rem var(--paradigm-pink),
+  0rem 0rem var(--highlighter-yellow),
+  0rem 0rem var(--pool-blue),
+  0rem 0rem var(--circuit-green),
+  0rem 0rem var(--juicebox-orange)
+ }
+ 20%  {box-shadow:
+  0.2rem 0.2rem var(--paradigm-pink),
+  0.2rem 0.2rem var(--highlighter-yellow),
+  0.2rem 0.2rem var(--pool-blue),
+  0.2rem 0.2rem var(--circuit-green),
+  0.2rem 0.2rem var(--juicebox-orange)
+ }
+ 40%  {box-shadow:
+  0.2rem 0.2rem var(--paradigm-pink),
+  0.4rem 0.4rem var(--highlighter-yellow),
+  0.4rem 0.4rem var(--pool-blue),
+  0.4rem 0.4rem var(--circuit-green),
+  0.4rem 0.4rem var(--juicebox-orange)
+ }
+ 60%  {box-shadow:
+  0.2rem 0.2rem var(--paradigm-pink),
+  0.4rem 0.4rem var(--highlighter-yellow),
+  0.6rem 0.6rem var(--pool-blue),
+  0.6rem 0.6rem var(--circuit-green),
+  0.6rem 0.6rem var(--juicebox-orange)
+ }
+ 80%  {box-shadow:
+  0.2rem 0.2rem var(--paradigm-pink),
+  0.4rem 0.4rem var(--highlighter-yellow),
+  0.6rem 0.6rem var(--pool-blue),
+  0.8rem 0.8rem var(--circuit-green),
+  0.8rem 0.8rem var(--juicebox-orange)
+ }
+ 100% {box-shadow:
+  0.2rem 0.2rem var(--paradigm-pink),
+  0.4rem 0.4rem var(--highlighter-yellow),
+  0.6rem 0.6rem var(--pool-blue),
+  0.8rem 0.8rem var(--circuit-green),
+    1rem   1rem var(--juicebox-orange)
+ }
+}
+
+.navButton:hover {
+ animation: paradigm-shadow 1s linear infinite alternate;
+ position: relative;
+ z-index: 2;
+}
+
+.navTab {
+ background-color: rgba(255,255,255,1);
+ border: solid;
+ height: calc(var(--def-border-box-height) + 1rem);
+}
+
+.navDrop {
+ display: none;
+ height: max-content;
+ gap: 0;
+ position: absolute;
+ top: calc(100% + var(--def-border-width));
+}
+
+.navDrop a {
+ width: 100%;
+}
+
+.navTab:hover .navDrop {
+ display: flex;
+ width: calc(100% + 2*var(--def-border-width));
 }
 
 .footer {

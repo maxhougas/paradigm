@@ -88,8 +88,58 @@ function mkmarquee(txt = 'DE FAULT ')
  return marquee
 }
 
-function mktopnav()
+function mkoveracc(title, listguys)
 {
+ let elsbox = document.createElement('div')
+ elsbox.className = 'navDrop'
+ listguys.forEach(e => {
+  let but = document.createElement('div')
+  but.className = 'navButton'
+  but.innerHTML = '<h1>'+e+'</h1>'
+  let butln = document.createElement('a')
+  butln.className = 'navButtonLn'
+  butln.target = 'frame-outside'
+  butln.href = FRAMURL + sannam(e)
+  butln.append(but)
+  elsbox.append(butln)
+ })
+
+ let topel = document.createElement('div')
+ topel.className = 'navTab'
+ topel.style.position = 'relative'
+ topel.innerHTML = '<h1>'+title+'</h1>'
+ topel.append(elsbox)
+
+ return topel
+}
+
+function mktopnav(pages)
+{
+ let logo = document.createElement('div')
+ logo.className = 'navButton'
+ logo.innerHTML = '<h1>Top</h1>'
+
+ let logoln = document.createElement('a')
+ logoln.target = 'frame-outside'
+ logoln.href = FRAMURL+'logo'
+ logoln.append(logo)
+
+ let mission = document.createElement('div')
+ mission.className = 'navButton'
+ mission.innerHTML = '<h1>Mission Statement</h1>'
+
+ let missionln = document.createElement('a')
+ missionln.target = 'frame-outside'
+ missionln.href = FRAMURL+'missionstatement'
+ missionln.append(mission)
+
+ let store = mkoveracc('Store',['Begleri','Knuckle Rollers'])
+
+ let tnav = document.createElement('div')
+ tnav.className = 'topnav'
+ tnav.append(logoln,missionln,store)
+
+ return tnav
 }
 
 /*
@@ -137,6 +187,7 @@ function mkframe()
 {
  let fram = document.createElement('iframe')
  fram.id = 'frame-outside'
+ fram.name = 'frame-outside'
  fram.className = 'frame'
  fram.title = 'Paradigm Toys main frame'
  fram.src = 'framconts.htm'
@@ -292,18 +343,20 @@ function mkcover()
  cover.className = 'cover'
 
  let mar = mkmarquee(MARQUEETEXT)
- mar.style.gridColumn = '1'
-
+ let tnav = mktopnav(PAGES)
  let fram = mkframe()
- fram.style.gridColumn = '1'
-
  let foot = mkfooter()
- foot.style.gridColumn = '1'
 
- cover.append(mar,fram,foot)
+ cover.append(mar,tnav,fram,foot)
  return cover
 }
 
+function sannam(txt)
+{
+ return txt.toLowerCase().replaceAll(' ','')
+}
+
+/*
 function mkaccordionel(txt,cbf)
 {
  el = document.createElement('div')
@@ -317,11 +370,6 @@ function mkaccordionel(txt,cbf)
  el.addEventListener('click', () => cbf(txt))
 
  return el
-}
-
-function sannam(txt)
-{
- return txt.toLowerCase().replaceAll(' ','')
 }
 
 function chframsec(txt)
@@ -393,4 +441,4 @@ function mkaccordions(gpgs)
 
  return sects
 }
-
+*/
