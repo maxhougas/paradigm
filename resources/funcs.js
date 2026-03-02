@@ -1,14 +1,5 @@
 const FRAMURL = 'framconts.htm#'
-
-const LOGOPAGES = ['Logo', []]
-const MISSIONPAGES = ['Mission Statement', []]
-const METAPAYL = ['Meta', [LOGOPAGES, MISSIONPAGES]]
-
-const SKILLTOYPAGES = ['Skill Toys', ['Begleri', 'Knuckle Rolers']]
-const PUZZLEPAGES = ['Puzzles', ['Puzzles of the First Kind', 'Puzzles of the Second Kind']]
-const STOREPAYL = ['Store', [SKILLTOYPAGES, PUZZLEPAGES]]
-
-const GPGS = [METAPAYL, STOREPAYL]
+const ETSYURL = 'https://www.etsy.com/listing/'
 
 const FILLER = '*Begel Larry'
 const LFILLER = '*PARADIGM TOYS*SKILL TOYS*BEGLERI*KNUCKLE ROLLERS*WEARABLES*CLASSIC PUZZELS*LOREM IPSUM*AND A FEW OTHER THINGS AS WELL'
