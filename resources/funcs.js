@@ -12,16 +12,8 @@ const ALTTAGLINE = 'Paradigm Toys - Play with Prupose.'
 const MISSIONSTATEMENT = 'Paradigm Toys offers high-quality skill toys, fidgets, and puzzles for enthusiasts seeking a unique, tactile experience.'
 
 const BEGLERI = [
- {desc:'DESCRIPTION',pric:'$59.95',stat:'resources/Rotating_Display.blend10000.png',dyn:'resources/Vertebrae_Bead_render_v3_Optimized.gif',link:'https://www.etsy.com/shop/ParadigmToys'},
- {desc:'DESCRIPTION',pric:'$59.95',stat:'resources/Rotating_Display.blend10000.png',dyn:'resources/Vertebrae_Bead_render_v3_Optimized.gif',link:'https://www.etsy.com/shop/ParadigmToys'},
- {desc:'DESCRIPTION',pric:'$59.95',stat:'resources/Rotating_Display.blend10000.png',dyn:'resources/Vertebrae_Bead_render_v3_Optimized.gif',link:'https://www.etsy.com/shop/ParadigmToys'},
- {desc:'DESCRIPTION',pric:'$59.95',stat:'resources/Rotating_Display.blend10000.png',dyn:'resources/Vertebrae_Bead_render_v3_Optimized.gif',link:'https://www.etsy.com/shop/ParadigmToys'},
- {desc:'DESCRIPTION',pric:'$59.95',stat:'resources/Rotating_Display.blend10000.png',dyn:'resources/Vertebrae_Bead_render_v3_Optimized.gif',link:'https://www.etsy.com/shop/ParadigmToys'},
- {desc:'DESCRIPTION',pric:'$59.95',stat:'resources/Rotating_Display.blend10000.png',dyn:'resources/Vertebrae_Bead_render_v3_Optimized.gif',link:'https://www.etsy.com/shop/ParadigmToys'},
- {desc:'DESCRIPTION',pric:'$59.95',stat:'resources/Rotating_Display.blend10000.png',dyn:'resources/Vertebrae_Bead_render_v3_Optimized.gif',link:'https://www.etsy.com/shop/ParadigmToys'},
- {desc:'DESCRIPTION',pric:'$59.95',stat:'resources/Rotating_Display.blend10000.png',dyn:'resources/Vertebrae_Bead_render_v3_Optimized.gif',link:'https://www.etsy.com/shop/ParadigmToys'},
- {desc:'DESCRIPTION',pric:'$59.95',stat:'resources/Rotating_Display.blend10000.png',dyn:'resources/Vertebrae_Bead_render_v3_Optimized.gif',link:'https://www.etsy.com/shop/ParadigmToys'},
- {desc:'DESCRIPTION',pric:'$59.95',stat:'resources/Rotating_Display.blend10000.png',dyn:'resources/Vertebrae_Bead_render_v3_Optimized.gif',link:'https://www.etsy.com/shop/ParadigmToys'}
+ {desc:"TWO_CATS",pric:"ONE_MILLION_DOLLARS",stat:"resources/Rotating_Display.blend10000.png",dyn:"resources/Vertebrae_Bead_render_v3_Optimized.gif",link:"https://www.etsy.com/shop/ParadigmToys"},
+ {desc:"DESCRIPTION",pric:"$59.95",stat:"resources/Rotating_Display.blend10000.png",dyn:"resources/Vertebrae_Bead_render_v3_Optimized.gif",link:"https://www.etsy.com/shop/ParadigmToys"}
 ]
 
 const PAGES = [
