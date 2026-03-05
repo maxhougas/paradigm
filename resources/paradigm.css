@@ -105,6 +105,14 @@ div {
  width: 100%;
 }
 
+img {
+ border-radius: inherit;
+}
+
+video {
+ border-radius: inherit;
+}
+
 a {
  color: var(--def-text-col);
  text-decoration: none;

@@ -12,8 +12,9 @@ const ALTTAGLINE = 'Paradigm Toys - Play with Prupose.'
 const MISSIONSTATEMENT = 'Paradigm Toys offers high-quality skill toys, fidgets, and puzzles for enthusiasts seeking a unique, tactile experience.'
 
 const BEGLERI = [
- {desc:"TWO_CATS",pric:"ONE_MILLION_DOLLARS",stat:"resources/Rotating_Display.blend10000.png",dyn:"resources/Vertebrae_Bead_render_v3_Optimized.gif",link:"https://www.etsy.com/shop/ParadigmToys"},
- {desc:"DESCRIPTION",pric:"$59.95",stat:"resources/Rotating_Display.blend10000.png",dyn:"resources/Vertebrae_Bead_render_v3_Optimized.gif",link:"https://www.etsy.com/shop/ParadigmToys"}
+ {desc:"Vertebrae",pric:"$39.99",link:"https://www.etsy.com/listing/4436753280"},
+ {desc:"Micro Vertebrae",pric:"$49.99",link:"https://www.etsy.com/listing/4461009038"},
+ {desc:"Roswell",pric:"$39.99",link:"https://www.etsy.com"}
 ]
 
 const PAGES = [
@@ -220,7 +221,7 @@ function mkanchor(superego)
  return anchor
 }
 
-function mkdisplaybox(description, price, staticpic, dynamicpic, url)
+function mkdisplayboxgif(description, price, staticpic, dynamicpic, url)
 {
  let imgguy = document.createElement('img');
  imgguy.className = 'imgguy'
@@ -294,11 +295,113 @@ function mkdisplaybox(description, price, staticpic, dynamicpic, url)
  return outerlink 
 }
 
+function mkdisplayboxvid(description, price, url)
+{
+ let sourcemp4 = document.createElement('source')
+ sourcemp4.src = 'resources/'+description+'.mp4'
+ sourcemp4.type = 'video/mp4'
+
+ let sourcenmp4 = document.createElement('source')
+ sourcenmp4.src = 'resources/'+description.toLowerCase().replaceAll(' ','_')+'.mp4'
+ sourcenmp4.type = 'video/mp4'
+
+ let sourceogg = document.createElement('source')
+ sourceogg.src = 'resources/'+description+'.ogg'
+ sourceogg.type = 'application/ogg'
+
+ let sourcenogg = document.createElement('source')
+ sourcenogg.src = 'resources/'+description.toLowerCase().replaceAll(' ','_')+'.ogg'
+ sourcenogg.type = 'application/ogg'
+
+ let sourcewebm = document.createElement('source')
+ sourcewebm.src = 'resources/'+description+'.webm'
+ sourcewebm.type = 'video/webm'
+
+ let sourcenwebm = document.createElement('source')
+ sourcenwebm.src = 'resources/'+description.toLowerCase().replaceAll(' ','_')+'.webm'
+ sourcenwebm.type = 'video/webm'
+
+ let vidguy = document.createElement('video');
+ vidguy.className = 'vidguy'
+ vidguy.loop = 'true'
+ vidguy.poster = 'resources/'+description+'.jpg'
+ vidguy.style.display = 'flex'
+ vidguy.style.maxHeight = '90%'
+ vidguy.style.maxWidth = '90%'
+ vidguy.append(sourcemp4,sourcenmp4,sourceogg,sourcenogg,sourcewebm,sourcenwebm)
+
+ let pinkbox = document.createElement('div');
+ pinkbox.className = 'pinkbox'
+ pinkbox.style.backgroundColor = 'var(--paradigm-pink)'
+ pinkbox.style.flexDirection = 'row'
+ pinkbox.style.height = 'calc(var(--def-border-box-height) - 2*var(--def-padding))'
+ pinkbox.style.padding = 'var(--def-padding)'
+ pinkbox.innerHTML = '<text style="color:white">View on Etsy&nbsp</text><img style="height:1rem" src="resources/Link-Icon.png"/>'
+
+ let whitebox = document.createElement('div');
+ whitebox.className = 'whitebox'
+ whitebox.style.borderRadius = '0rem 0rem 1rem 1rem'
+ whitebox.style.backgroundColor = 'rgba(255,255,255,0.75)'
+ whitebox.style.position = 'absolute'
+ whitebox.style.top = 'calc(100% - 5rem)'
+ whitebox.style.height = '5rem'
+ whitebox.style.display = 'none'
+ whitebox.style.padding = '1rem'
+ whitebox.append(pinkbox)
+
+ let picbox = document.createElement('div')
+ picbox.className = 'picbox'
+ picbox.style.position = 'relative'
+ picbox.style.backgroundColor = 'var(--alt-bgd-col)'
+ picbox.append(vidguy,whitebox)
+
+ let desc = document.createElement('div')
+ desc.style.maxWidth = '50%'
+ desc.innerHTML = '<text>'+description+'</text>'
+
+ let pric = document.createElement('div')
+ pric.style.maxWidth = '50%'
+ pric.style.justifyContent = 'right'
+ pric.style.flexFlow = 'row nowrap'
+ pric.innerHTML = '<text>'+price+'</text>'
+
+ let wordbox = document.createElement('div')
+ wordbox.className = 'wordbox'
+ wordbox.style.flexFlow = 'row nowrap'
+ wordbox.style.backgroundColor = 'var(--alt-bgd-col)'
+ wordbox.style.height = '100%'
+ wordbox.style.padding = '1rem'
+ wordbox.append(desc,pric)
+
+ function mausing(e,inout)
+ {
+  let vid = e.target.firstElementChild.children[0]
+  let mod = e.target.firstElementChild.children[1]
+  if(inout) {vid.play()}
+  else {vid.pause()}
+  mod.style.display = inout ? 'flex' : 'none'
+ }
+
+ let dbox = document.createElement('div')
+ dbox.className = 'display-box'
+ dbox.append(picbox,wordbox)
+ dbox.addEventListener('mouseenter',e => mausing(e,true))
+ dbox.addEventListener('mouseleave',e => mausing(e,false))
+
+ let outerlink = document.createElement('a')
+ outerlink.className = 'display-box-out'
+ outerlink.href = url
+ outerlink.target = '_top'
+ outerlink.append(dbox)
+
+ return outerlink 
+}
+
 function mkdisplayboxes(prods)
 {
  let boxes = document.createElement('div')
  boxes.className = 'products'
- prods.forEach(e => boxes.append(mkdisplaybox(e.desc,e.pric,e.stat,e.dyn,e.link)))
+ prods.forEach(e => boxes.append(mkdisplayboxvid(e.desc,e.pric,e.link)))
 
  return boxes
 }
